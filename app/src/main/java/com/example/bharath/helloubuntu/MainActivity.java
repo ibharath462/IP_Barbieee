@@ -40,6 +40,7 @@ import java.io.InputStream;
 import android.os.Handler;
 
 import com.hanks.htextview.HTextView;
+import com.hanks.htextview.HTextViewType;
 
 import java.util.logging.LogRecord;
 
@@ -47,11 +48,11 @@ public class MainActivity extends AppCompatActivity{
 
     private CameraBridgeViewBase mOpenCvCameraView;
     Mat mRgba,mRgbaF,mRgbaT,t;
-    info.hoang8f.widget.FButton detect;
+    info.hoang8f.widget.FButton detect,swap;
     CascadeClassifier face_cascade;
     MatOfRect faces=null;
     com.hanks.htextview.HTextView title;
-    int flag=0,count=0;
+    int flag=0,count=0,flip;
     Handler mHandler;
     private int mCameraId = 0; //add this one
     @Override
@@ -65,15 +66,19 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
 
-        android.support.design.widget.FloatingActionButton fab=(android.support.design.widget.FloatingActionButton)findViewById(R.id.fab);
 
         detect=(info.hoang8f.widget.FButton)findViewById(R.id.detect);
+        swap=(info.hoang8f.widget.FButton)findViewById(R.id.swap);
 
         title = (com.hanks.htextview.HTextView) findViewById(R.id.title);
+        title.setAnimateType(HTextViewType.LINE);
+
+        mHandler=new Handler();
+
 
         timer();
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //detect(t);
@@ -121,7 +126,15 @@ public class MainActivity extends AppCompatActivity{
                 // Rotate mRgba 90 degrees
                 Core.transpose(mRgba, mRgbaT);
                 Imgproc.resize(mRgbaT, mRgbaF, mRgbaF.size(), 0, 0, 0);
-                Core.flip(mRgbaF, mRgba, -1);
+                if(mCameraId==0)
+                {
+                    flip=1;
+                }
+                else
+                {
+                    flip=-1;
+                }
+                Core.flip(mRgbaF, mRgba,flip);
                 t=mRgba;
                 if(flag==1) {
                     for (Rect rect : faces.toArray()) {
@@ -267,7 +280,7 @@ public class MainActivity extends AppCompatActivity{
                 // TODO Auto-generated method stub
                 while (true) {
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(2000);
                         mHandler.post(new Runnable() {
 
                             @Override
@@ -283,6 +296,7 @@ public class MainActivity extends AppCompatActivity{
                                 }
                                 count++;
                                 title.animate();
+                                detect(t);
 
                             }
                         });

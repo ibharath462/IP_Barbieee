@@ -52,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:minHeight="@dimen/demo_button_min_height"
             android:minWidth="@dimen/demo_button_min_width"
             android:text="Detect"
@@ -60,6 +61,19 @@
             fbutton:shadowEnabled="true"
             android:layout_centerHorizontal="true" />
 
+        <info.hoang8f.widget.FButton
+            android:id="@+id/swap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="Swap Camera"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_nephritis"
+            fbutton:shadowEnabled="true"
+            android:layout_centerHorizontal="true" />
 
 
     </LinearLayout>

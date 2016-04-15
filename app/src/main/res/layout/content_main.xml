@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/color_custom_fragment_2"
+    android:layout_width="match_parent"
+    xmlns:htext="http://schemas.android.com/apk/res-auto"
+    xmlns:opencv="http://schemas.android.com/apk/res-auto"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.bharath.helloubuntu.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <com.hanks.htextview.HTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="3"
+            android:background="@color/color_custom_fragment_2"
+            android:gravity="center"
+            android:text="Login for 5B:"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            htext:animateType="line"
+            />
+
+        <org.opencv.android.JavaCameraView
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:id="@+id/HelloOpenCvView"
+            opencv:show_fps="true"
+            opencv:camera_id="any" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/detect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="Detect"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_nephritis"
+            fbutton:shadowEnabled="true"
+            android:layout_centerHorizontal="true" />
+
+
+
+    </LinearLayout>
+</RelativeLayout>
